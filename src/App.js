@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react"
 import './App.css';
 import { mapDistance } from './methods';
+import axios from 'axios'
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
 
 const postRequest = async () => {
   try {
-    const response = await fetch('https://care-box-backend.herokuapp.com/api/v1/applicant_test/post_distance', {
+    const response = await axios.post('https://care-box-backend.herokuapp.com/api/v1/applicant_test/post_distance/', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -26,15 +27,14 @@ const postRequest = async () => {
       },
       body: JSON.stringify({distance: distance})
     });
+
     const content = await response.json();
-    console.log(content)
+    console.log(response)
   } catch (error) {
     console.log(error)
   }
 
 }
-
-
 
   return (
     <div className="App">
